@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application is available on
 
-## Available Scripts
+https://ron-swanson-2019.herokuapp.com/
 
-In the project directory, you can run:
 
-### `npm start`
+Swanson Swag
+This app returns Ron Swanson quotes available from Using the “Ron Swanson Quotes API”
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+The app allows you to get Ron Swanson quotes on demand.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+With the click of a button, you will get a Swanson word of wisdom
 
-### `npm run build`
+Right Size Swanson
+You are able get quotes that are a size that you request.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It allows you to determine if I want a small, medium or large quote.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+It shows a quote that are 4 words or less if I choose small
+It shows a quote that is 5 words to 12 words if I choose medium
+It shows a quote that is 13 words or larger if I choose large
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Vote for Awesomeness
+You are also able to rate a Ron Swanson Quote.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You are able to rate 1 to 5 on a quote however you are only allowed 1 rate per quote.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Average Quote Rating
+The app will also give you the average rating per Ron Swanson Quote if available from our api
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+All quotes in the database are available via api calls on a Heroku hosted server running Postgresql
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+https://glacial-gorge-14374.herokuapp.com/
