@@ -30,6 +30,8 @@ class App extends Component {
       data:{},
       currentQuote:'',
       ratingInfo:'',
+      modalResults:{},
+      modalOpen:false,
      };
      this.handleClick = this.handleClick.bind(this);
   }
@@ -47,30 +49,28 @@ class App extends Component {
   }
   async findRatingInfo(){    
     const url = "https://glacial-gorge-14374.herokuapp.com/find?quote=" + this.state.currentQuote;
-    console.log("url:" , url);
     
+    // get the quotes in the db. for each quote, calculate the rating total and divide by number of results to get the average.
     fetch(url)
     .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      
+    .then(data => {      
       let ratingTotal=0;
       data.results.forEach(quote =>{
         ratingTotal += quote.rating || 0;
       })
     
       let ratingInfo='';
-      if (ratingTotal===0)
+      if (ratingTotal===0) // if there were no previous rating for this quote, let the user know.
         ratingInfo = "No one has yet to rate this fabulous Ron Swanson quote. How deplorable.";
       else {
         const percentage = ratingTotal/data.results.length;
         ratingInfo = data.results.length + " users rated this quote with an average rating of " + percentage.toFixed(2);
       }
-      console.log("setting ratingInfo:" + ratingInfo);
       
       this.setState({ratingInfo:ratingInfo});
     })
   }
+
   async handleClick(event){
     this.setState({ratingInfo:''})      
     switch (event.target.value) {
@@ -101,6 +101,7 @@ class App extends Component {
     }
   }
   getPreviousRating(numStars){
+    // print out non clickable stars for previous rating for this user
     let starArr = [];
     for (let i=0; i<numStars; i++)
       starArr.push(<RedStar key={Math.floor(Math.random() * 100)}/>)
@@ -131,6 +132,7 @@ class App extends Component {
       }
   }
   componentDidMount() {
+    // fecth 100 Ron Swanson quotes from the api
     fetch('https://ron-swanson-quotes.herokuapp.com/v2/quotes/100')
       .then(response => response.json())
       .then(data => {
@@ -139,13 +141,15 @@ class App extends Component {
           this.state.quotes.push({length:res.length, quote:quote});
         })
       });
-      console.log(this.state.quotes);
   }
 
   ratingChanged = (newRating) => {
+    
+    // if this is the first time the user has rated this quote, mark it in local storage
     if (!localStorage.getItem(this.state.currentQuote))
       localStorage.setItem(this.state.currentQuote, newRating);
 
+      // post the rating and the quote in our database using our api from glacial-gorge-14374.heroku.com  you can find more api info there.
       axios.post(`https://glacial-gorge-14374.herokuapp.com/insert`,  {rating:newRating, quote:this.state.currentQuote} )
       .then(res => {
         const response = res.data;
@@ -158,8 +162,7 @@ class App extends Component {
           })
           .then((value) => {
             this.setState({ratingInfo:'You have just added to the collective'});
-            console.log("Aww yiss, currentQuote is:" + this.state);
-            
+            // update the rating information about the quote
             this.findRatingInfo();
             this.forceUpdate();            
           });
@@ -174,6 +177,21 @@ class App extends Component {
       })
 
   }
+  async handleModalClick(){
+    const url = "https://glacial-gorge-14374.herokuapp.com/find?quote=" + this.state.currentQuote;
+    
+    // get the quotes in the db. for each quote, calculate the rating total and divide by number of results to get the average.
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {      
+      let ratingTotal=0;
+      data.results.forEach(quote =>{
+        
+      })
+
+    })
+  }
+
   render() {
 
     return (
@@ -186,8 +204,8 @@ class App extends Component {
             </div>
             <div className="col-lg-6 offset-lg-6"><p style={pStyle}>{this.state.ratingInfo}</p></div>
           </div>
-          <div className="card">
-            <p className="card-title" style={{color:'#000'}}>
+          <div className="card bg-dark border-1 border-white">
+            <p className="card-title text-white">
             Find Ron Swanson quotes by word length</p>
             <div className="card-body">
               <div className="btn-group">
@@ -197,7 +215,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-        </header>
+        </header>     
       </div>
     );
   }
